@@ -35,7 +35,7 @@ router.put("/:id", async (req, res) => {
   res.send(category);
 });
 
-router.delete("/:id", [auth, admin], async (req, res) => {
+router.delete("/:id", [auth], async (req, res) => {
   const category = await Category.findByIdAndRemove(req.params.id);
 
   if (!category)
