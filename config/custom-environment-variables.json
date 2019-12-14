@@ -1,3 +1,4 @@
 {
-  "jwtPrivateKey": "walletaid_jwtPrivateKey"
+  "jwtPrivateKey": "walletaid_jwtPrivateKey",
+  "db": "walletaid_db"
 }
