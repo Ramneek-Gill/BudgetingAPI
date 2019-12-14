@@ -26,12 +26,12 @@ router.post("/", async (req, res) => {
 function validateUser(req) {
   const schema = {
     email: Joi.string()
-      .min(5)
+      .min(4)
       .max(255)
       .required()
       .email(),
     password: Joi.string()
-      .min(5)
+      .min(4)
       .max(255)
       .required()
   };
