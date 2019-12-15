@@ -13,7 +13,7 @@ const winston = require("winston");
 app.use(function(req, res, next) {
   res.header(
     "Access-Control-Allow-Origin",
-    "https://pacific-reef-90107.herokuapp.com"
+    "https://cors-anywhere.herokuapp.com/"
   );
   res.header(
     "Access-Control-Allow-Headers",
