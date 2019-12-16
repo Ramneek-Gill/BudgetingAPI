@@ -39,7 +39,7 @@ router.put("/:id", async (req, res) => {
     req.params.id,
     {
       item: req.body.item,
-      genre: {
+      category: {
         _id: category._id,
         name: category.name
       },
