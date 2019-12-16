@@ -43,7 +43,7 @@ router.put("/:id", async (req, res) => {
         _id: category._id,
         name: category.name
       },
-      cost: req.cost
+      cost: req.body.cost
     },
     { new: true }
   );
