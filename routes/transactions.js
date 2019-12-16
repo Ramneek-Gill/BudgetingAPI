@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Category } = require("../models/category");
 const { Transaction, validate } = require("../models/transaction");
+const auth = require("../middleware/auth");
 
 router.get("/", async (req, res) => {
   const transactions = await Transaction.find().sort("name");
