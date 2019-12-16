@@ -9,7 +9,6 @@ const Transaction = mongoose.model(
       type: String,
       required: true,
       trim: true,
-      minlength: 5,
       maxlength: 255
     },
     category: {
@@ -19,25 +18,21 @@ const Transaction = mongoose.model(
     cost: {
       type: Number,
       required: true,
-      min: 0,
-      max: 1000
+      max: 9999
     }
   })
 );
 
-// function validateTransaction(transaction) {
-//   const schema = {
-//     item: Joi.string()
-//       .min(5)
-//       .max(50)
-//       .required(),
-//     categoryId: Joi.string().required(),
-//     cost: Joi.number()
-//       .min(0)
-//       .required()
-//   };
-//   return Joi.validate(transaction, schema);
-// }
+function validateTransaction(transaction) {
+  const schema = {
+    item: Joi.string()
+      .max(50)
+      .required(),
+    categoryId: Joi.string().required(),
+    cost: Joi.number().required()
+  };
+  return Joi.validate(transaction, schema);
+}
 
 module.exports.Transaction = Transaction;
-// module.exports.validate = validateTransaction;
+module.exports.validate = validateTransaction;
