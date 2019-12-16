@@ -23,7 +23,7 @@ router.post("/", async (req, res) => {
     },
     cost: req.body.cost
   });
-  transaction = await transaction.save();
+  await transaction.save();
 
   res.send(transaction);
 });
@@ -48,10 +48,13 @@ router.put("/:id", async (req, res) => {
     { new: true }
   );
 
-  if (!transaction)
+  if (!transaction) {
     return res
       .status(404)
       .send("The transaction with the given ID was not found.");
+  }
+
+  res.send(transaction);
 });
 
 router.delete("/:id", async (req, res) => {
