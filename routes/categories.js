@@ -18,7 +18,7 @@ router.post("/", auth, async (req, res) => {
   res.send(category);
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", auth, async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -35,7 +35,7 @@ router.put("/:id", async (req, res) => {
   res.send(category);
 });
 
-router.delete("/:id", [auth], async (req, res) => {
+router.delete("/:id", auth, async (req, res) => {
   const category = await Category.findByIdAndRemove(req.params.id);
 
   if (!category)

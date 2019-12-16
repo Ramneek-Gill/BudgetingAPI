@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
   res.send(transactions);
 });
 
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
   res.send(transaction);
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", auth, async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -57,7 +57,7 @@ router.put("/:id", async (req, res) => {
   res.send(transaction);
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", auth, async (req, res) => {
   const transaction = await Transaction.findByIdAndRemove(req.params.id);
 
   if (!transaction)
