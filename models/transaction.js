@@ -25,19 +25,19 @@ const Transaction = mongoose.model(
   })
 );
 
-function validateTransaction(transaction) {
-  const schema = {
-    item: Joi.string()
-      .min(5)
-      .max(50)
-      .required(),
-    categoryId: Joi.string().required(),
-    cost: Joi.number()
-      .min(0)
-      .required()
-  };
-  return Joi.validate(transaction, schema);
-}
+// function validateTransaction(transaction) {
+//   const schema = {
+//     item: Joi.string()
+//       .min(5)
+//       .max(50)
+//       .required(),
+//     categoryId: Joi.string().required(),
+//     cost: Joi.number()
+//       .min(0)
+//       .required()
+//   };
+//   return Joi.validate(transaction, schema);
+// }
 
 module.exports.Transaction = Transaction;
-module.exports.validate = validateTransaction;
+// module.exports.validate = validateTransaction;
