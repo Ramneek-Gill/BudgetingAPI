@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const { Budget, validate } = require("../models/budget");
-const auth = require("../middleware/auth");
 
 router.post("/", async (req, res) => {
   const { error } = validate(req.body);
@@ -42,3 +41,5 @@ router.get("/:id", async (req, res) => {
 
   res.send(budget);
 });
+
+module.exports = router;
