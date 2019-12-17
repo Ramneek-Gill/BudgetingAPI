@@ -8,13 +8,22 @@ const Budget = mongoose.model(
       type: Number,
       required: true,
       max: 9999
+    },
+    name: {
+      type: String,
+      required: true,
+      trim: true,
+      maxlength: 255
     }
   })
 );
 
 function validateBudget(budget) {
   const schema = {
-    budget: Joi.number().required()
+    budget: Joi.number().required(),
+    name: Joi.string()
+      .max(50)
+      .required()
   };
   return Joi.validate(budget, schema);
 }

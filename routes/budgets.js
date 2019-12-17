@@ -12,7 +12,8 @@ router.post("/", async (req, res) => {
   if (error) return res.status(400).send(error.details[0].message);
 
   const budget = new Budget({
-    budget: req.body.budget
+    budget: req.body.budget,
+    name: req.body.name
   });
   await budget.save();
 
@@ -26,7 +27,8 @@ router.put("/:id", async (req, res) => {
   const budget = await Budget.findByIdAndUpdate(
     req.params.id,
     {
-      budget: req.body.budget
+      budget: req.body.budget,
+      name: req.body.name
     },
     { new: true }
   );
