@@ -1,5 +1,6 @@
 const Joi = require("joi");
 const mongoose = require("mongoose");
+const { categorySchema } = require("./category");
 
 const Budget = mongoose.model(
   "Budget",
@@ -14,6 +15,10 @@ const Budget = mongoose.model(
       required: true,
       trim: true,
       maxlength: 255
+    },
+    category: {
+      type: categorySchema,
+      required: true
     }
   })
 );
@@ -23,7 +28,8 @@ function validateBudget(budget) {
     budget: Joi.number().required(),
     name: Joi.string()
       .max(50)
-      .required()
+      .required(),
+    categoryId: Joi.string().required()
   };
   return Joi.validate(budget, schema);
 }

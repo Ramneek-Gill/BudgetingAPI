@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { Budget, validate } = require("../models/budget");
+const { Category } = require("../models/category");
 
 router.get("/", async (req, res) => {
   const budgets = await Budget.find();
@@ -11,9 +12,16 @@ router.post("/", async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
+  const category = await Category.findById(req.body.categoryId);
+  if (!category) return res.status(400).send("Invalid Category");
+
   const budget = new Budget({
     budget: req.body.budget,
-    name: req.body.name
+    name: req.body.name,
+    category: {
+      _id: category._id,
+      name: category.name
+    }
   });
   await budget.save();
 
@@ -23,12 +31,19 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
-  console.log("req-params-id: " + req.params.id);
+
+  const category = await Category.findById(req.body.categoryId);
+  if (!category) return res.status(400).send("Invalid Category.");
+
   const budget = await Budget.findByIdAndUpdate(
     req.params.id,
     {
       budget: req.body.budget,
-      name: req.body.name
+      name: req.body.name,
+      category: {
+        _id: category._id,
+        name: category.name
+      }
     },
     { new: true }
   );
