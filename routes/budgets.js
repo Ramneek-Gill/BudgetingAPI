@@ -49,4 +49,13 @@ router.get("/:id", async (req, res) => {
   res.send(budget);
 });
 
+router.delete("/:id", async (req, res) => {
+  const budget = await Budget.findByIdAndRemove(req.params.id);
+
+  if (!budget)
+    return res.status(404).send("The budget with the given ID was not found.");
+
+  res.send(budget);
+});
+
 module.exports = router;
