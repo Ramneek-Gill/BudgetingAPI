@@ -17,7 +17,6 @@ router.post("/", async (req, res) => {
 
   const budget = new Budget({
     budget: req.body.budget,
-    name: req.body.name,
     category: {
       _id: category._id,
       name: category.name
@@ -39,7 +38,6 @@ router.put("/:id", async (req, res) => {
     req.params.id,
     {
       budget: req.body.budget,
-      name: req.body.name,
       category: {
         _id: category._id,
         name: category.name
