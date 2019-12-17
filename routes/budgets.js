@@ -2,6 +2,11 @@ const express = require("express");
 const router = express.Router();
 const { Budget, validate } = require("../models/budget");
 
+router.get("/", async (req, res) => {
+  const budgets = await Budget.find();
+  res.send(budgets);
+});
+
 router.post("/", async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
